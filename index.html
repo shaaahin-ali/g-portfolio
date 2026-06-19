@@ -27,7 +27,7 @@
         <li><a href="#about"      class="nav-link" id="nav-about">  <span class="nav-icon">👤</span> Player</a></li>
         <li><a href="#experience" class="nav-link" id="nav-exp">    <span class="nav-icon">💼</span> Work</a></li>
         <li><a href="#skills"     class="nav-link" id="nav-skills"> <span class="nav-icon">⚔️</span> Skills</a></li>
-        <li><a href="#project"    class="nav-link" id="nav-project"><span class="nav-icon">👾</span> Project</a></li>
+        <li><a href="#project"    class="nav-link" id="nav-project"><span class="nav-icon">👾</span> Projects</a></li>
         <li><a href="#sidequests" class="nav-link" id="nav-quests"><span class="nav-icon">📋</span> Quests</a></li>
         <li><a href="#footer"     class="nav-link" id="nav-contact"><span class="nav-icon">✉️</span> Contact</a></li>
       </ul>
@@ -417,7 +417,7 @@
       </div>
 
       <span class="level-label boss">Boss Level</span>
-      <h2 class="section-title boss-title">Featured Project</h2>
+      <h2 class="section-title boss-title">Featured Projects</h2>
 
       <div class="boss-card">
         <!-- Floating card suit decorations -->
@@ -500,6 +500,94 @@
           <div class="boss-buttons">
             <a href="#" class="pixel-btn green" id="view-code-btn">[ View Code ]</a>
             <a href="#" class="pixel-btn pink" id="play-demo-btn">[ Play Demo ]</a>
+            <a href="#" class="pixel-btn" id="kida-repo-btn" target="_blank" rel="noopener" style="border-color:#8b5cf6;color:#8b5cf6;">[ GitHub Repo ]</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== OUROBOROS — SECOND FEATURED PROJECT ===== -->
+      <div class="boss-card ouroboros-card">
+        <!-- Floating loop decorations -->
+        <div class="card-suit-deco" aria-hidden="true">
+          <span class="suit suit-spade">◯</span>
+          <span class="suit suit-heart">∞</span>
+          <span class="suit suit-diamond">◇</span>
+          <span class="suit suit-club">⬡</span>
+        </div>
+
+        <div class="boss-card-header">
+          <!-- Loop dots visual -->
+          <div class="mini-cards-fan" aria-hidden="true">
+            <div class="mini-card mc-1" style="background:#0f172a;border-color:#22d3ee;"><span class="mc-suit" style="color:#22d3ee;">3</span><span class="mc-val" style="color:#22d3ee;">·</span></div>
+            <div class="mini-card mc-2" style="background:#0f172a;border-color:#a78bfa;"><span class="mc-suit" style="color:#a78bfa;">2</span><span class="mc-val" style="color:#a78bfa;">·</span></div>
+            <div class="mini-card mc-3" style="background:#0f172a;border-color:#34d399;"><span class="mc-suit" style="color:#34d399;">1</span><span class="mc-val" style="color:#34d399;">·</span></div>
+            <div class="mini-card mc-4" style="background:#0f172a;border-color:#f472b6;"><span class="mc-suit" style="color:#f472b6;">0</span><span class="mc-val" style="color:#f472b6;">·</span></div>
+          </div>
+          <h3 class="boss-name" style="background:linear-gradient(90deg,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">OUROBOROS</h3>
+          <p class="boss-subtitle">Loop Logic Puzzle Game</p>
+          <div class="boss-tags-subtitle">
+            <span class="tag-pill" style="border-color:#22d3ee;color:#22d3ee;">Slitherlink-Inspired</span>
+            <span class="tag-pill" style="border-color:#a78bfa;color:#a78bfa;">Spatial Reasoning</span>
+            <span class="tag-pill" style="border-color:#34d399;color:#34d399;">Pure Logic</span>
+          </div>
+        </div>
+
+        <div class="boss-card-body">
+          <p class="boss-description">
+            A constraint-based loop puzzle game where players draw lines between dots to form a single continuous loop. Number clues dictate how many edges surround each cell — no crossings, no branches, just pure deductive reasoning against increasingly devious grids.
+          </p>
+
+          <div class="boss-tech-stack">
+            <span class="tech-tag" style="border-color:#22d3ee;color:#22d3ee;">React</span>
+            <span class="tech-tag" style="border-color:#a78bfa;color:#a78bfa;">JavaScript</span>
+            <span class="tech-tag" style="border-color:#34d399;color:#34d399;">Canvas API</span>
+            <span class="tech-tag" style="border-color:#f472b6;color:#f472b6;">Constraint Solver</span>
+            <span class="tech-tag" style="border-color:#fbbf24;color:#fbbf24;">Graph Theory</span>
+          </div>
+
+          <!-- Loop-themed feature cards -->
+          <div class="feature-hand" aria-hidden="true">
+            <div class="feature-card fc-1" style="border-color:#22d3ee;">
+              <div class="fc-corner" style="color:#22d3ee;">◯</div>
+              <div class="fc-label">Loop<br>Builder</div>
+            </div>
+            <div class="feature-card fc-2" style="border-color:#a78bfa;">
+              <div class="fc-corner" style="color:#a78bfa;">∞</div>
+              <div class="fc-label">Constraint<br>Engine</div>
+            </div>
+            <div class="feature-card fc-3" style="border-color:#34d399;">
+              <div class="fc-corner" style="color:#34d399;">◇</div>
+              <div class="fc-label">Puzzle<br>Generator</div>
+            </div>
+            <div class="feature-card fc-4" style="border-color:#f472b6;">
+              <div class="fc-corner" style="color:#f472b6;">⬡</div>
+              <div class="fc-label">Difficulty<br>Scaling</div>
+            </div>
+          </div>
+
+          <div class="boss-abilities">
+            <h4 class="abilities-title">✦ Core Mechanics</h4>
+            <ul class="abilities-list">
+              <li>Draw edges between grid dots to form one continuous, non-intersecting loop obeying number constraints (0–4 per cell)</li>
+              <li>Constraint propagation engine that auto-eliminates impossible edges and highlights forced moves</li>
+              <li>Procedural puzzle generator producing unique, solvable boards from 5×5 (Easy) up to 15×15 (Expert)</li>
+              <li>Real-time validation that detects illegal branches, premature closures, and constraint violations</li>
+              <li>Progressive difficulty system: Easy → Medium → Hard → Expert, scaling grid size and reducing given clues</li>
+              <li>Undo/redo stack, hint system, and timer-based scoring for competitive play</li>
+            </ul>
+          </div>
+
+          <div class="boss-tooltip">
+            <span class="tooltip-icon">💡</span>
+            <p class="tooltip-text">
+              <strong>Why this matters:</strong> Implements graph traversal, constraint satisfaction (CSP), and procedural content generation — core techniques used in level design tools, pathfinding systems, and puzzle mechanics across AAA and indie titles.
+            </p>
+          </div>
+
+          <div class="boss-buttons">
+            <a href="#" class="pixel-btn green" id="ouro-code-btn">[ View Code ]</a>
+            <a href="#" class="pixel-btn pink" id="ouro-demo-btn">[ Play Demo ]</a>
+            <a href="#" class="pixel-btn" id="ouro-repo-btn" target="_blank" rel="noopener" style="border-color:#22d3ee;color:#22d3ee;">[ GitHub Repo ]</a>
           </div>
         </div>
       </div>

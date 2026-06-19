@@ -1558,6 +1558,44 @@ a, button, .achievement-card, .cartridge-card, .side-quest-item, .contact-link, 
 }
 
 /* ============================================================
+   OUROBOROS CARD — DISTINCT THEME
+   ============================================================ */
+.ouroboros-card {
+  border-color: #22d3ee;
+  box-shadow: 0 0 40px rgba(34,211,238,.15), 0 8px 32px rgba(0,0,0,.6), 0 0 0 3px rgba(34,211,238,.2);
+  margin-top: 40px;
+}
+
+.ouroboros-card::before {
+  background: linear-gradient(135deg, rgba(34,211,238,.03) 0%, transparent 50%, rgba(167,139,250,.03) 100%) !important;
+}
+
+.ouroboros-card .boss-card-header {
+  border-bottom-color: rgba(34,211,238,.15);
+}
+
+.ouroboros-card .boss-abilities {
+  background: rgba(34,211,238,.03);
+  border-color: rgba(34,211,238,.12);
+}
+
+.ouroboros-card .abilities-title {
+  color: #22d3ee;
+}
+
+.ouroboros-card .abilities-list li::before {
+  color: #22d3ee;
+}
+
+.ouroboros-card .feature-card {
+  background: linear-gradient(135deg, #0f172a, #1a1a3a);
+}
+
+.ouroboros-card .fc-label {
+  color: #e2e8f0;
+}
+
+/* ============================================================
    7. SIDE QUESTS
    ============================================================ */
 .side-quests-title {
