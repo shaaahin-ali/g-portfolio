@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shahin Ali — Game Dev Portfolio 2026</title>
+  <meta name="description" content="Shahin Ali's game development portfolio — C++, Flutter, game architecture, and AI engine integration. Applying for Electronic Arts internship 2026." />
+  <meta name="theme-color" content="#0a0a14" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- ===== XP READING PROGRESS BAR ===== -->
+  <div class="xp-progress-bar" id="xp-bar" aria-hidden="true">
+    <div class="xp-fill" id="xp-fill"></div>
+    <span class="xp-label" id="xp-label">XP 0%</span>
+  </div>
+
+  <!-- ===== FIXED PIXEL NAV ===== -->
+  <nav class="pixel-nav" id="pixel-nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <span class="nav-logo">SA.EXE</span>
+      <ul class="nav-links">
+        <li><a href="#about"      class="nav-link" id="nav-about">  <span class="nav-icon">👤</span> Player</a></li>
+        <li><a href="#experience" class="nav-link" id="nav-exp">    <span class="nav-icon">💼</span> Work</a></li>
+        <li><a href="#skills"     class="nav-link" id="nav-skills"> <span class="nav-icon">⚔️</span> Skills</a></li>
+        <li><a href="#project"    class="nav-link" id="nav-project"><span class="nav-icon">👾</span> Project</a></li>
+        <li><a href="#sidequests" class="nav-link" id="nav-quests"><span class="nav-icon">📋</span> Quests</a></li>
+        <li><a href="#footer"     class="nav-link" id="nav-contact"><span class="nav-icon">✉️</span> Contact</a></li>
+      </ul>
+      <div style="display:flex;gap:6px;align-items:center;flex-shrink:0;">
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+        <button class="nav-mute-btn" id="nav-mute" aria-label="Toggle sound">🔊</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== SCANLINE OVERLAY ===== -->
+  <div class="scanline-overlay" aria-hidden="true"></div>
+
+  <!-- ===== PIXEL DECORATIONS (scattered across page) ===== -->
+  <div class="pixel-deco pixel-star" style="top:8%;left:5%;" aria-hidden="true"></div>
+  <div class="pixel-deco pixel-star" style="top:15%;right:8%;" aria-hidden="true"></div>
+  <div class="pixel-deco pixel-cloud" style="top:22%;left:12%;" aria-hidden="true"></div>
+  <div class="pixel-deco pixel-coin" style="top:35%;right:6%;" aria-hidden="true"></div>
+  <div class="pixel-deco pixel-star" style="top:42%;left:3%;" aria-hidden="true"></div>
+  <div class="pixel-deco pixel-mushroom" style="top:55%;right:10%;" aria-hidden="true"></div>
+  <div class="pixel-deco pixel-flower" style="top:65%;left:7%;" aria-hidden="true"></div>
+  <div class="pixel-deco pixel-star" style="top:75%;right:4%;" aria-hidden="true"></div>
+  <div class="pixel-deco pixel-cloud" style="top:82%;left:9%;" aria-hidden="true"></div>
+  <div class="pixel-deco pixel-coin" style="top:90%;right:12%;" aria-hidden="true"></div>
+
+  <!-- ===== STARFIELD CANVAS ===== -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ===== 1. HERO / TITLE SCREEN ===== -->
+  <section id="hero" class="hero">
+    <!-- HUD Bar -->
+    <div class="hud-bar">
+      <span class="hud-left">GAME DEV LEVEL 03</span>
+      <span class="hud-right">
+        <span class="hp-label">HP</span>
+        <span class="hp-bar">
+          <span class="hp-fill"></span>
+        </span>
+      </span>
+    </div>
+
+    <!-- Scrolling cloud strip -->
+    <div class="cloud-strip" aria-hidden="true">
+      <div class="cloud-strip-inner">
+        <svg class="cloud-svg" viewBox="0 0 120 40" width="120" height="40"><rect x="20" y="20" width="80" height="16" rx="2" fill="#1a2744"/><rect x="30" y="10" width="60" height="16" rx="2" fill="#1a2744"/><rect x="40" y="4" width="40" height="12" rx="2" fill="#1a2744"/></svg>
+        <svg class="cloud-svg" viewBox="0 0 120 40" width="120" height="40"><rect x="20" y="20" width="80" height="16" rx="2" fill="#1a2744"/><rect x="30" y="10" width="60" height="16" rx="2" fill="#1a2744"/><rect x="40" y="4" width="40" height="12" rx="2" fill="#1a2744"/></svg>
+        <svg class="cloud-svg" viewBox="0 0 120 40" width="120" height="40"><rect x="20" y="20" width="80" height="16" rx="2" fill="#1a2744"/><rect x="30" y="10" width="60" height="16" rx="2" fill="#1a2744"/><rect x="40" y="4" width="40" height="12" rx="2" fill="#1a2744"/></svg>
+        <svg class="cloud-svg" viewBox="0 0 120 40" width="120" height="40"><rect x="20" y="20" width="80" height="16" rx="2" fill="#1a2744"/><rect x="30" y="10" width="60" height="16" rx="2" fill="#1a2744"/><rect x="40" y="4" width="40" height="12" rx="2" fill="#1a2744"/></svg>
+        <svg class="cloud-svg" viewBox="0 0 120 40" width="120" height="40"><rect x="20" y="20" width="80" height="16" rx="2" fill="#1a2744"/><rect x="30" y="10" width="60" height="16" rx="2" fill="#1a2744"/><rect x="40" y="4" width="40" height="12" rx="2" fill="#1a2744"/></svg>
+        <svg class="cloud-svg" viewBox="0 0 120 40" width="120" height="40"><rect x="20" y="20" width="80" height="16" rx="2" fill="#1a2744"/><rect x="30" y="10" width="60" height="16" rx="2" fill="#1a2744"/><rect x="40" y="4" width="40" height="12" rx="2" fill="#1a2744"/></svg>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <!-- Currently playing badge -->
+      <div class="currently-playing">
+        <span class="cp-dot"></span>
+        <span class="cp-text">Currently: Game Dev Intern @ Groop</span>
+      </div>
+      <h1 class="hero-title glitch-text" data-text="2026 PORTFOLIO">2026 PORTFOLIO</h1>
+      <p class="hero-sub">SHAHIN ALI · GAME DEVELOPER</p>
+      <div class="hero-buttons">
+        <a href="#about" class="start-btn" id="start-button">
+          <span class="start-btn-text">▶ START GAME</span>
+        </a>
+        <a href="#" class="resume-btn" id="resume-btn" download aria-label="Download Resume">
+          <span>⬇ RESUME</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Animated pixel platform ground -->
+    <div class="pixel-ground" aria-hidden="true">
+      <div class="ground-tiles"></div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <span class="scroll-arrow">▼</span>
+    </div>
+  </section>
+
+  <!-- ===== 2. SCROLLING TICKER BAR ===== -->
+  <div class="ticker-bar" aria-hidden="true">
+    <div class="ticker-inner">
+      <span>C++ Wizard ⚔️ · Flutter Architect 🏗️ · Algorithm Optimizer 🧠 · DSA Expert 🎯 · Game Engine Hacker 🎮 · Minimax Pro 🤖 · FFI Bridge Builder 🔗 · SQL Master 📦 · Python Ninja 🐍 · Problem Solver 🔥 · MVC Architect 📐 · AI Opponent Designer 👾 · Open Source ❤️ · </span>
+      <span>C++ Wizard ⚔️ · Flutter Architect 🏗️ · Algorithm Optimizer 🧠 · DSA Expert 🎯 · Game Engine Hacker 🎮 · Minimax Pro 🤖 · FFI Bridge Builder 🔗 · SQL Master 📦 · Python Ninja 🐍 · Problem Solver 🔥 · MVC Architect 📐 · AI Opponent Designer 👾 · Open Source ❤️ · </span>
+    </div>
+  </div>
+  <!-- ===== PIXEL DIVIDER ===== -->
+  <div class="pixel-divider" aria-hidden="true">
+    <div class="pixel-divider-line"></div>
+    <span class="pixel-divider-icon">★</span>
+    <div class="pixel-divider-line"></div>
+  </div>
+
+  <!-- ===== 3. MEET THE PLAYER ===== -->
+  <section id="about" class="section reveal">
+    <div class="section-container">
+      <span class="level-label">Level 01</span>
+      <h2 class="section-title">Meet the Player</h2>
+
+      <div class="about-layout">
+        <!-- DS Console Photo Frame -->
+        <div class="ds-console">
+          <div class="ds-top-screen">
+            <div class="ds-screen-bezel">
+              <div class="ds-photo-placeholder">
+                <!-- Pixel art avatar SVG -->
+                <svg class="ds-avatar" viewBox="0 0 64 80" xmlns="http://www.w3.org/2000/svg" aria-label="Pixel art avatar">
+                  <!-- Hair -->
+                  <rect x="16" y="8"  width="32" height="4"  fill="#1a0a00"/>
+                  <rect x="12" y="12" width="40" height="4"  fill="#1a0a00"/>
+                  <rect x="12" y="16" width="4"  height="8"  fill="#1a0a00"/>
+                  <rect x="48" y="16" width="4"  height="8"  fill="#1a0a00"/>
+                  <!-- Face -->
+                  <rect x="16" y="16" width="32" height="24" fill="#f5c89a"/>
+                  <!-- Eyes -->
+                  <rect x="22" y="22" width="6"  height="6"  fill="#1a1a3a"/>
+                  <rect x="36" y="22" width="6"  height="6"  fill="#1a1a3a"/>
+                  <rect x="23" y="23" width="2"  height="2"  fill="#ffffff"/>
+                  <rect x="37" y="23" width="2"  height="2"  fill="#ffffff"/>
+                  <!-- Eyebrows -->
+                  <rect x="21" y="19" width="8"  height="2"  fill="#1a0a00"/>
+                  <rect x="35" y="19" width="8"  height="2"  fill="#1a0a00"/>
+                  <!-- Smile -->
+                  <rect x="24" y="32" width="16" height="2"  fill="#c0734a"/>
+                  <rect x="22" y="30" width="4"  height="2"  fill="#c0734a"/>
+                  <rect x="38" y="30" width="4"  height="2"  fill="#c0734a"/>
+                  <!-- Shirt / Body -->
+                  <rect x="14" y="44" width="36" height="24" fill="#3DA9FC"/>
+                  <!-- Collar -->
+                  <rect x="26" y="44" width="12" height="4"  fill="#f5c89a"/>
+                  <!-- Neck -->
+                  <rect x="28" y="40" width="8"  height="6"  fill="#f5c89a"/>
+                  <!-- Neon green accent line -->
+                  <rect x="14" y="56" width="36" height="3"  fill="#39FF14" opacity="0.4"/>
+                </svg>
+                <div class="ds-scanlines"></div>
+                <div class="ds-avatar-name">SA</div>
+              </div>
+            </div>
+          </div>
+          <div class="ds-hinge"></div>
+          <div class="ds-bottom">
+            <div class="ds-bottom-screen">
+              <span class="ds-name-display">SHAHIN ALI</span>
+            </div>
+            <div class="ds-controls">
+              <div class="ds-dpad">
+                <div class="ds-dpad-v"></div>
+                <div class="ds-dpad-h"></div>
+              </div>
+              <div class="ds-buttons">
+                <span class="ds-btn ds-btn-a">A</span>
+                <span class="ds-btn ds-btn-b">B</span>
+              </div>
+            </div>
+            <div class="ds-speaker">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dialogue Box -->
+        <div class="dialogue-box">
+          <div class="dialogue-header">
+            <span class="dialogue-arrow">▶</span> Hello !!
+          </div>
+          <div class="dialogue-content">
+            <p><strong class="stat-key">Player:</strong> Shahin Ali</p>
+            <p><strong class="stat-key">Class:</strong> B.Tech CSE · Govt. Model Engineering College, Kochi</p>
+            <p><strong class="stat-key">Mission:</strong> Building game engines, AI systems, and polished interactive experiences</p>
+            <p><strong class="stat-key">Status:</strong> <span class="status-ready">Currently on an active quest — scroll down!</span></p>
+          </div>
+          <div class="dialogue-footer">
+            <span class="dialogue-continue">▼ Let's start the quest!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PIXEL DIVIDER ===== -->
+  <div class="pixel-divider" aria-hidden="true">
+    <div class="pixel-divider-line"></div>
+    <span class="pixel-divider-icon">💼</span>
+    <div class="pixel-divider-line"></div>
+  </div>
+
+  <!-- ===== 3b. EXPERIENCE ===== -->
+  <section id="experience" class="section reveal">
+    <div class="section-container">
+      <span class="level-label" style="color:var(--hot-pink)">Active Quests</span>
+      <h2 class="section-title">Experience</h2>
+
+      <div class="exp-cards">
+        <!-- Internship 1: Groop Games -->
+        <div class="exp-card exp-card-active">
+          <div class="exp-card-badge">ACTIVE</div>
+          <div class="exp-card-header">
+            <span class="exp-icon">🎮</span>
+            <div>
+              <h3 class="exp-role">Game Developer Intern</h3>
+              <p class="exp-company">Groop Games <span class="exp-separator">·</span> Under Amaresh Deshpande</p>
+            </div>
+          </div>
+          <div class="exp-card-body">
+            <p class="exp-project">Project: <strong>Kida</strong> — Trick-Taking Card Puzzle Game</p>
+            <p class="exp-desc">Building a Flutter-based double-dummy puzzle solver with real-time C++ engine integration via Dart FFI. Designed dual-solver architecture, transposition table caching, and 6-level campaign system.</p>
+            <div class="exp-tech">
+              <span>Flutter</span><span>Dart</span><span>C++ FFI</span><span>SQLite</span><span>Minimax</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Internship 2: QuAnHack Solutions -->
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <span class="exp-icon">🤖</span>
+            <div>
+              <h3 class="exp-role">AI / RAG Backend Developer</h3>
+              <p class="exp-company">QuAnHack Solutions Pvt. Ltd</p>
+            </div>
+          </div>
+          <div class="exp-card-body">
+            <p class="exp-desc">Built RAG-based document analysis pipelines and semantic search systems. Worked with LLM inference, vector databases, and retrieval-augmented generation for enterprise use cases.</p>
+            <div class="exp-tech">
+              <span>Python</span><span>FastAPI</span><span>FAISS</span><span>LLMs</span><span>RAG</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. SKILLS MASTERY ===== -->
+  <section id="skills" class="section reveal">
+    <div class="section-container">
+      <span class="level-label">Level 02</span>
+      <h2 class="section-title">Skills Mastery</h2>
+
+      <div class="cartridge-grid">
+        <!-- Card A -->
+        <div class="cartridge-card">
+          <div class="cartridge-top">
+            <div class="cartridge-notch"></div>
+          </div>
+          <div class="cartridge-label">
+            <h3 class="cartridge-title">Tech Mastery</h3>
+            <div class="cartridge-art">⚙️</div>
+          </div>
+          <ul class="stat-list">
+            <li><span class="stat-bar-label">C++</span><span class="stat-bar"><span class="stat-fill" style="width:92%"></span></span></li>
+            <li><span class="stat-bar-label">Python</span><span class="stat-bar"><span class="stat-fill" style="width:88%"></span></span></li>
+            <li><span class="stat-bar-label">Java</span><span class="stat-bar"><span class="stat-fill" style="width:80%"></span></span></li>
+            <li><span class="stat-bar-label">Dart / Flutter</span><span class="stat-bar"><span class="stat-fill" style="width:90%"></span></span></li>
+            <li><span class="stat-bar-label">DSA</span><span class="stat-bar"><span class="stat-fill" style="width:95%"></span></span></li>
+            <li><span class="stat-bar-label">Git / VCS</span><span class="stat-bar"><span class="stat-fill" style="width:85%"></span></span></li>
+            <li><span class="stat-bar-label">REST APIs</span><span class="stat-bar"><span class="stat-fill" style="width:82%"></span></span></li>
+          </ul>
+        </div>
+
+        <!-- Card B -->
+        <div class="cartridge-card card-pink">
+          <div class="cartridge-top">
+            <div class="cartridge-notch"></div>
+          </div>
+          <div class="cartridge-label">
+            <h3 class="cartridge-title">Skill Mastery</h3>
+            <div class="cartridge-art">🎮</div>
+          </div>
+          <ul class="stat-list">
+            <li><span class="stat-bar-label">Game Architecture</span><span class="stat-bar pink"><span class="stat-fill pink" style="width:90%"></span></span></li>
+            <li><span class="stat-bar-label">Algorithm Optimization</span><span class="stat-bar pink"><span class="stat-fill pink" style="width:93%"></span></span></li>
+            <li><span class="stat-bar-label">Problem Solving</span><span class="stat-bar pink"><span class="stat-fill pink" style="width:95%"></span></span></li>
+            <li><span class="stat-bar-label">Team Collaboration</span><span class="stat-bar pink"><span class="stat-fill pink" style="width:87%"></span></span></li>
+            <li><span class="stat-bar-label">Time Management</span><span class="stat-bar pink"><span class="stat-fill pink" style="width:85%"></span></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PIXEL DIVIDER ===== -->
+  <div class="pixel-divider" aria-hidden="true">
+    <div class="pixel-divider-line"></div>
+    <span class="pixel-divider-icon">⚔</span>
+    <div class="pixel-divider-line"></div>
+  </div>
+
+  <!-- ===== 5. TRAINING LOG (Education) ===== -->
+  <section id="education" class="section reveal">
+    <div class="section-container">
+      <span class="level-label">Level 03</span>
+      <h2 class="section-title">Training Log</h2>
+
+      <div class="quest-log-card">
+        <div class="quest-log-pin"></div>
+        <div class="quest-log-pin right"></div>
+        <div class="quest-log-header">📜 Quest Log — Education</div>
+        <div class="quest-log-body">
+          <div class="quest-entry">
+            <span class="quest-icon">🎓</span>
+            <div>
+              <p class="quest-title">Govt. Model Engineering College, Kochi</p>
+              <p class="quest-detail">B.Tech in Computer Science Engineering</p>
+              <p class="quest-detail">CGPA: <span class="highlight-green">9.2</span> · Expected 2027 · KTU affiliated</p>
+            </div>
+          </div>
+          <div class="quest-entry" style="margin-top:14px">
+            <span class="quest-icon">📚</span>
+            <div>
+              <p class="quest-title">IJ Higher Secondary School</p>
+              <p class="quest-detail">State 12th · <span class="highlight-green">99%</span> · 2022</p>
+            </div>
+          </div>
+          <div class="quest-entry" style="margin-top:14px">
+            <span class="quest-icon">📖</span>
+            <div>
+              <p class="quest-title">Sacred Heart Senior Secondary School</p>
+              <p class="quest-detail">CBSE 10th · <span class="highlight-green">92.8%</span> · 2020</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications & Key Positions -->
+      <div class="quest-log-card" style="margin-top:28px;">
+        <div class="quest-log-pin"></div>
+        <div class="quest-log-pin right"></div>
+        <div class="quest-log-header">🏅 Certifications & Key Positions</div>
+        <div class="quest-log-body">
+          <div class="quest-entry">
+            <span class="quest-icon">☁️</span>
+            <div>
+              <p class="quest-title">Cloud Computing — NPTEL</p>
+              <p class="quest-detail">Offered by IIT Kharagpur</p>
+            </div>
+          </div>
+          <div class="quest-entry" style="margin-top:14px">
+            <span class="quest-icon">🐍</span>
+            <div>
+              <p class="quest-title">Python Certification — Kaggle</p>
+              <p class="quest-detail">Covering core programming concepts</p>
+            </div>
+          </div>
+          <div class="quest-entry" style="margin-top:14px">
+            <span class="quest-icon">📢</span>
+            <div>
+              <p class="quest-title">Chief Publicity Officer — Excel MEC 2025</p>
+              <p class="quest-detail">Led publicity for Kerala's premier techno-cultural festival</p>
+            </div>
+          </div>
+          <div class="quest-entry" style="margin-top:14px">
+            <span class="quest-icon">🎨</span>
+            <div>
+              <p class="quest-title">Ambiance Manager — Excel MEC 2024</p>
+              <p class="quest-detail">Managed festival ambience and event atmosphere</p>
+            </div>
+          </div>
+          <div class="quest-entry" style="margin-top:14px">
+            <span class="quest-icon">🏆</span>
+            <div>
+              <p class="quest-title">IEEE MAGIC 3.0 Hackathon — Top 10</p>
+              <p class="quest-detail">Built library management system in 24 hours · Ranked Top 10 out of 4 teams</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PIXEL DIVIDER ===== -->
+  <div class="pixel-divider boss-divider" aria-hidden="true">
+    <div class="pixel-divider-line pink"></div>
+    <span class="pixel-divider-icon pink">⚠</span>
+    <div class="pixel-divider-line pink"></div>
+  </div>
+
+  <!-- ===== 6. BOSS LEVEL — FEATURED PROJECT ===== -->
+  <section id="project" class="section reveal">
+    <div class="section-container">
+      <div class="boss-warning">
+        <span class="boss-warning-icon">⚠️</span>
+        <span class="boss-warning-text">WARNING — BOSS LEVEL AHEAD</span>
+        <span class="boss-warning-icon">⚠️</span>
+      </div>
+
+      <span class="level-label boss">Boss Level</span>
+      <h2 class="section-title boss-title">Featured Project</h2>
+
+      <div class="boss-card">
+        <!-- Floating card suit decorations -->
+        <div class="card-suit-deco" aria-hidden="true">
+          <span class="suit suit-spade">♠</span>
+          <span class="suit suit-heart">♥</span>
+          <span class="suit suit-diamond">♦</span>
+          <span class="suit suit-club">♣</span>
+        </div>
+
+        <div class="boss-card-header">
+          <!-- Mini playing cards fan -->
+          <div class="mini-cards-fan" aria-hidden="true">
+            <div class="mini-card mc-1"><span class="mc-suit">♠</span><span class="mc-val">A</span></div>
+            <div class="mini-card mc-2"><span class="mc-suit red">♥</span><span class="mc-val">K</span></div>
+            <div class="mini-card mc-3"><span class="mc-suit red">♦</span><span class="mc-val">Q</span></div>
+            <div class="mini-card mc-4"><span class="mc-suit">♣</span><span class="mc-val">J</span></div>
+          </div>
+          <h3 class="boss-name">KIDA</h3>
+          <p class="boss-subtitle">Trick-Taking Card Puzzle Game</p>
+          <div class="boss-tags-subtitle">
+            <span class="tag-pill">Current Internship Project</span>
+            <span class="tag-pill">Groop Games</span>
+            <span class="tag-pill">Under Amaresh Deshpande</span>
+          </div>
+        </div>
+
+        <div class="boss-card-body">
+          <p class="boss-description">
+            A Flutter-based trick-taking card puzzle game inspired by competitive Bridge mechanics, built around a complete double-dummy solver. Players race to find the mathematically optimal line of play against a perfect-information opponent.
+          </p>
+
+          <div class="boss-tech-stack">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">C++ (FFI)</span>
+            <span class="tech-tag">SQLite</span>
+            <span class="tech-tag">Minimax / Alpha-Beta</span>
+          </div>
+
+          <!-- Card game visual: hand of cards showing game features -->
+          <div class="feature-hand" aria-hidden="true">
+            <div class="feature-card fc-1">
+              <div class="fc-corner">♠</div>
+              <div class="fc-label">Dual<br>Solver</div>
+            </div>
+            <div class="feature-card fc-2">
+              <div class="fc-corner red">♥</div>
+              <div class="fc-label">FFI<br>Bridge</div>
+            </div>
+            <div class="feature-card fc-3">
+              <div class="fc-corner red">♦</div>
+              <div class="fc-label">6-Level<br>Campaign</div>
+            </div>
+            <div class="feature-card fc-4">
+              <div class="fc-corner">♣</div>
+              <div class="fc-label">Puzzle<br>Builder</div>
+            </div>
+          </div>
+
+          <div class="boss-abilities">
+            <h4 class="abilities-title">✦ Special Abilities Unlocked</h4>
+            <ul class="abilities-list">
+              <li>Dual-solver architecture: primary C++ DDS engine via Dart FFI for near-instant solves, with a pure-Dart Minimax + Alpha-Beta fallback engine</li>
+              <li>Transposition table memoization to cache repeated board states and cut redundant computation</li>
+              <li>Move-ordering optimization (evaluates highest-ranking cards first) to maximize pruning efficiency</li>
+              <li>6 built-in puzzle campaigns scaling from Beginner (1 card/hand) to Master (4 cards/hand)</li>
+              <li>Custom puzzle builder with local SQLite persistence so users can create and save their own challenges</li>
+              <li>Clean MVC-style architecture separating game models, solver engine, and Flutter UI layer</li>
+            </ul>
+          </div>
+
+          <div class="boss-tooltip">
+            <span class="tooltip-icon">💡</span>
+            <p class="tooltip-text">
+              <strong>Why this matters:</strong> Demonstrates native code integration (C++/FFI), game state modeling, and performance-critical algorithm design — the same category of problem-solving used in real-time game engines and AI opponent systems.
+            </p>
+          </div>
+
+          <div class="boss-buttons">
+            <a href="#" class="pixel-btn green" id="view-code-btn">[ View Code ]</a>
+            <a href="#" class="pixel-btn pink" id="play-demo-btn">[ Play Demo ]</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6b. ACHIEVEMENTS ===== -->
+  <section id="achievements" class="section reveal">
+    <div class="section-container">
+      <span class="level-label" style="color:#FFD700">Unlocked</span>
+      <h2 class="section-title" style="color:#FFD700">Achievements</h2>
+      <div class="achievements-grid">
+
+        <div class="achievement-card" id="ach-cpp">
+          <div class="ach-icon">🏆</div>
+          <div class="ach-info">
+            <p class="ach-name">Native Code Warrior</p>
+            <p class="ach-desc">Integrated C++ DDS engine into Flutter via Dart FFI</p>
+          </div>
+          <div class="ach-badge gold">GOLD</div>
+        </div>
+
+        <div class="achievement-card" id="ach-algo">
+          <div class="ach-icon">🧠</div>
+          <div class="ach-info">
+            <p class="ach-name">Algorithmic Genius</p>
+            <p class="ach-desc">Minimax + Alpha-Beta pruning with transposition tables</p>
+          </div>
+          <div class="ach-badge gold">GOLD</div>
+        </div>
+
+        <div class="achievement-card" id="ach-ai">
+          <div class="ach-icon">🤖</div>
+          <div class="ach-info">
+            <p class="ach-name">AI Whisperer</p>
+            <p class="ach-desc">Built semantic search with FAISS + sentence-transformers</p>
+          </div>
+          <div class="ach-badge silver">SILVER</div>
+        </div>
+
+        <div class="achievement-card" id="ach-cgpa">
+          <div class="ach-icon">🎓</div>
+          <div class="ach-info">
+            <p class="ach-name">Scholar</p>
+            <p class="ach-desc">9.2 CGPA · B.Tech CSE · Govt. Model Engineering College</p>
+          </div>
+          <div class="ach-badge gold">GOLD</div>
+        </div>
+
+        <div class="achievement-card" id="ach-fullstack">
+          <div class="ach-icon">🔗</div>
+          <div class="ach-info">
+            <p class="ach-name">Full Stack Master</p>
+            <p class="ach-desc">RAG platforms, Next.js, FastAPI & Cloudflare Workers</p>
+          </div>
+          <div class="ach-badge silver">SILVER</div>
+        </div>
+
+        <div class="achievement-card" id="ach-intern">
+          <div class="ach-icon">🚀</div>
+          <div class="ach-info">
+            <p class="ach-name">Dual Intern</p>
+            <p class="ach-desc">2 internships: Game Dev (Kida @ Groop) &amp; AI/RAG Backend</p>
+          </div>
+          <div class="ach-badge gold">GOLD</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. SIDE QUESTS (Other Projects) ===== -->
+  <section id="sidequests" class="section reveal">
+    <div class="section-container">
+      <h2 class="section-title side-quests-title">Side Quests Completed</h2>
+
+      <div class="side-quests-list">
+        <div class="side-quest-item">
+          <span class="sq-check">✓</span>
+          <div class="sq-info">
+            <span class="sq-name">TenderLens</span> — RAG-based document analysis platform, Next.js + LLM inference
+          </div>
+        </div>
+        <div class="side-quest-item">
+          <span class="sq-check">✓</span>
+          <div class="sq-info">
+            <span class="sq-name">Sahay Kerala</span> — Disaster response platform with real-time tracking
+          </div>
+        </div>
+        <div class="side-quest-item">
+          <span class="sq-check">✓</span>
+          <div class="sq-info">
+            <span class="sq-name">SeekRight</span> — Semantic search pipeline with FastAPI, Whisper, FAISS
+          </div>
+        </div>
+        <div class="side-quest-item">
+          <span class="sq-check">✓</span>
+          <div class="sq-info">
+            <span class="sq-name">DeepfakeDetective</span> — Browser extension for real-time deepfake detection via Cloudflare Workers + Hugging Face
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PINK TICKER (bottom) ===== -->
+  <div class="ticker-bar ticker-bar-pink" aria-hidden="true">
+    <div class="ticker-inner ticker-reverse">
+      <span>🏆 Native Code Warrior · 🧠 Algorithmic Genius · 🤖 AI Whisperer · 🎓 Scholar 9.2 CGPA · 🚀 Dual Intern · 🔗 Full Stack Master · 🎮 Game Dev @ Groop · 🎮 Kida — Trick-Taking Puzzle · 🏆 Native Code Warrior · 🧠 Algorithmic Genius · 🤖 AI Whisperer · 🎓 Scholar 9.2 CGPA · 🚀 Dual Intern · 🔗 Full Stack Master · 🎮 Game Dev @ Groop · 🎮 Kida — Trick-Taking Puzzle · </span>
+      <span>🏆 Native Code Warrior · 🧠 Algorithmic Genius · 🤖 AI Whisperer · 🎓 Scholar 9.2 CGPA · 🚀 Dual Intern · 🔗 Full Stack Master · 🎮 Game Dev @ Groop · 🎮 Kida — Trick-Taking Puzzle · 🏆 Native Code Warrior · 🧠 Algorithmic Genius · 🤖 AI Whisperer · 🎓 Scholar 9.2 CGPA · 🚀 Dual Intern · 🔗 Full Stack Master · 🎮 Game Dev @ Groop · 🎮 Kida — Trick-Taking Puzzle · </span>
+    </div>
+  </div>
+
+  <!-- ===== 8. FOOTER / CONTINUE? ===== -->
+  <footer id="footer" class="footer reveal">
+    <div class="section-container">
+      <div class="game-over-text">
+        <p class="game-over-line1">GAME OVER</p>
+        <p class="game-over-line2">Continue?</p>
+        <div class="continue-options">
+          <span class="continue-yes">▶ Y</span>
+          <span class="continue-no">  N</span>
+        </div>
+      </div>
+
+      <p class="footer-insert-coin">— Insert Coin to Continue —</p>
+
+      <!-- Pixel art separator -->
+      <div class="footer-separator" aria-hidden="true">
+        <span>· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</span>
+      </div>
+
+      <p class="footer-ready-text">Let's build something <span class="highlight-green-glow">great</span> together.</p>
+
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/shahin-ali-tp/" class="contact-link" id="linkedin-link" target="_blank" rel="noopener">
+          <span class="contact-icon">in</span> LinkedIn
+        </a>
+        <a href="https://github.com/shaaahin-ali" class="contact-link" id="github-link" target="_blank" rel="noopener">
+          <span class="contact-icon">&lt;/&gt;</span> GitHub
+        </a>
+        <a href="mailto:shahinali.mec@gmail.com" class="contact-link" id="email-link">
+          <span class="contact-icon">@</span> Email
+        </a>
+        <a href="tel:+918547270067" class="contact-link" id="phone-link">
+          <span class="contact-icon">☎</span> Phone
+        </a>
+        <a href="#" class="contact-link resume-dl-link" id="resume-footer-link" download aria-label="Download Resume">
+          <span class="contact-icon">⬇</span> Resume
+        </a>
+      </div>
+
+      <!-- Konami code hint -->
+      <p class="konami-hint" id="konami-hint">⬆⬆⬇⬇⬅➡⬅➡ B A — Try it!</p>
+
+      <p class="credits">Player: Shahin Ali · Build 2026 · Made with ❤️ &amp; Caffeine</p>
+    </div>
+  </footer>
+
+  <!-- ===== KONAMI EASTER EGG MODAL ===== -->
+  <div class="konami-modal" id="konami-modal" aria-hidden="true" role="dialog" aria-labelledby="konami-title">
+    <div class="konami-modal-inner">
+      <p class="konami-modal-title" id="konami-title">🎮 CHEAT CODE ACTIVATED!</p>
+      <p class="konami-modal-sub">+30 Lives · God Mode Enabled</p>
+      <p class="konami-modal-msg">You found the easter egg! Shahin's secret power: turning coffee into clean, efficient code at 2AM.</p>
+      <button class="pixel-btn green" id="konami-close">[ Press Start ]</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
