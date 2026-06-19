@@ -1558,7 +1558,7 @@ a, button, .achievement-card, .cartridge-card, .side-quest-item, .contact-link, 
 }
 
 /* ============================================================
-   OUROBOROS CARD — DISTINCT THEME
+   OUROBOROS CARD — GRID/LOOP THEME
    ============================================================ */
 .ouroboros-card {
   border-color: #22d3ee;
@@ -1587,12 +1587,134 @@ a, button, .achievement-card, .cartridge-card, .side-quest-item, .contact-link, 
   color: #22d3ee;
 }
 
-.ouroboros-card .feature-card {
-  background: linear-gradient(135deg, #0f172a, #1a1a3a);
+/* Floating grid decorations */
+.ouro-grid-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
 }
 
-.ouroboros-card .fc-label {
+.ouro-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22d3ee;
+  opacity: 0.12;
+  animation: ouroDotPulse 4s ease-in-out infinite;
+}
+
+.ouro-line-h {
+  position: absolute;
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(34,211,238,0.15), transparent);
+  animation: ouroLineFade 5s ease-in-out infinite;
+}
+
+.ouro-line-v {
+  position: absolute;
+  width: 2px; height: 40px;
+  background: linear-gradient(180deg, transparent, rgba(167,139,250,0.15), transparent);
+  animation: ouroLineFade 5s ease-in-out infinite;
+}
+
+@keyframes ouroDotPulse {
+  0%, 100% { opacity: 0.08; transform: scale(1); }
+  50%      { opacity: 0.2;  transform: scale(1.5); }
+}
+
+@keyframes ouroLineFade {
+  0%, 100% { opacity: 0.1; }
+  50%      { opacity: 0.25; }
+}
+
+/* Mini puzzle grid SVG */
+.ouro-mini-grid {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.ouro-grid-svg {
+  filter: drop-shadow(0 0 12px rgba(34,211,238,0.2));
+}
+
+.ouro-loop-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawLoop 3s ease-in-out forwards;
+}
+
+@keyframes drawLoop {
+  0%   { stroke-dashoffset: 400; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Grid-themed feature tiles */
+.ouro-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 28px;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid rgba(34,211,238,0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ouro-tile {
+  position: relative;
+  padding: 20px 14px;
+  text-align: center;
+  background: rgba(34,211,238,0.03);
+  transition: all 0.3s ease;
+}
+
+.ouro-tile:hover {
+  background: rgba(34,211,238,0.08);
+}
+
+.ouro-tile-icon {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  color: #22d3ee;
+  filter: drop-shadow(0 0 6px rgba(34,211,238,0.3));
+}
+
+.ouro-tile:nth-child(2) .ouro-tile-icon { color: #a78bfa; filter: drop-shadow(0 0 6px rgba(167,139,250,0.3)); }
+.ouro-tile:nth-child(3) .ouro-tile-icon { color: #34d399; filter: drop-shadow(0 0 6px rgba(52,211,153,0.3)); }
+.ouro-tile:nth-child(4) .ouro-tile-icon { color: #f472b6; filter: drop-shadow(0 0 6px rgba(244,114,182,0.3)); }
+
+.ouro-tile-label {
+  font-family: var(--font-pixel);
+  font-size: 0.35rem;
   color: #e2e8f0;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+.ouro-tile-border {
+  position: absolute;
+  background: rgba(34,211,238,0.15);
+}
+
+.ouro-tile-border.top    { top: 0; left: 10%; right: 10%; height: 1px; }
+.ouro-tile-border.bottom { bottom: 0; left: 10%; right: 10%; height: 1px; }
+.ouro-tile-border.left   { left: 0; top: 10%; bottom: 10%; width: 1px; }
+.ouro-tile-border.right  { right: 0; top: 10%; bottom: 10%; width: 1px; }
+
+.ouro-tile:nth-child(1) { border-right: 1px solid rgba(34,211,238,0.1); border-bottom: 1px solid rgba(34,211,238,0.1); }
+.ouro-tile:nth-child(2) { border-bottom: 1px solid rgba(34,211,238,0.1); }
+.ouro-tile:nth-child(3) { border-right: 1px solid rgba(34,211,238,0.1); }
+
+@media (max-width: 480px) {
+  .ouro-feature-grid { max-width: 260px; }
+  .ouro-tile { padding: 14px 10px; }
+  .ouro-tile-icon { font-size: 1.2rem; }
+  .ouro-grid-svg { width: 140px; height: 100px; }
 }
 
 /* ============================================================
